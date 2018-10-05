@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Add</title>
+</head>
+
+<style>
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+table, th, td {
+	padding: 4px;
+	border: 1px solid black;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;  
+}
+</style>
+
+<body>
+	<h2>List of Flight</h2>
+	<table>
+		<tr>
+			<th>Flight Number</th>
+			<th>Origin</th>
+			<th>Destination</th>
+			<th>Time</th>
+			<th>Detail</th>
+			<th>Status</th>
+			<th>Update</th>
+		</tr>
+		<tr th:each="flight: ${listOfFlight}">
+			<td th:text="${flight.flightNumber}"></td>
+			<td th:text="${flight.origin}"></td>
+			<td th:text="${flight.destination}"></td>
+			<td th:text="${flight.time}"></td>
+			<td><a
+				th:href="'/flight/view/detail/' + ${flight.pilot.licenseNumber}">Detail
+				Pilot</a></td>
+
+			<td><a
+				th:href="'/flight/delete/' + ${flight.pilot.licenseNumber} + '/' + ${flight.id}">Delete
+					Flight</a></td>
+			<td><a
+				th:href="'/flight/update/' + ${flight.pilot.licenseNumber} + '/' + ${flight.id}">Update
+					Flight</a></td>
+		</tr>
+	</table>
+</body>
+</html>

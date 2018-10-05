@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>View Pilot</title>
+</head>
+<style>
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+table, th, td {
+	padding: 4px;
+	border: 1px solid black;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;  
+}
+</style>
+
+<body>
+	<h2>Pilot</h2>
+	<h3 th:text="'Pilot License Number: ' + ${pilot.licenseNumber}"></h3>
+	<h3 th:text="'Name: ' + ${pilot.name}"></h3>
+	<h3 th:text="'FlyHour: ' + ${pilot.flyHour}"></h3>
+	<td><a th:href="'/flight/add/' + ${pilot.licenseNumber} ">Add
+			Flight</a></td>
+	<br>
+	<br>
+	<td><a th:href="'/pilot/delete/' + ${pilot.licenseNumber}">Delete
+			Pilot</a></td>
+	<br>
+	<br>
+	<td><a th:href="'/pilot/update/' + ${pilot.licenseNumber}">Update
+			Pilot</a></td>
+	<br>
+	<br>
+	
+	<table>
+		<tr>
+			<th>Flight Number</th>
+			<th>Origin</th>
+			<th>Destination</th>
+			<th>Time</th>
+			<th>Status</th>
+			<th>Update</th>
+		</tr>
+		<tr th:each="flight: ${pilot.pilotFlight}">
+			<td th:text="${flight.flightNumber}"></td>
+			<td th:text="${flight.origin}"></td>
+			<td th:text="${flight.destination}"></td>
+			<td th:text="${flight.time}"></td>
+			<td><a
+				th:href="'/flight/delete/' + ${pilot.licenseNumber} + '/' + ${flight.id}">Delete
+					Flight</a></td>
+			<td><a
+				th:href="'/flight/update/' + ${pilot.licenseNumber} + '/' + ${flight.id}">Update 
+					Flight</a></td>
+		</tr>
+	</table>
+
+</body>
+
+</html>
